@@ -1,4 +1,5 @@
 import 'package:fineace/app_barrels.dart';
+import 'package:fineace/presentation/constants/asset_constant.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -28,7 +29,7 @@ class SignInScreen extends StatelessWidget {
             const SizedBox(height: 20),
             PinputWidget(),
             const SizedBox(height: 20),
-            SquareButton(icon: Icons.arrow_back,),
+            SquareButton(iconPath: AssetConstant.arrowLeftIconPath,),
           ],
         ),
       ),

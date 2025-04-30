@@ -1,9 +1,9 @@
 import 'package:fineace/app_barrels.dart';
 
 class SquareButton extends StatelessWidget {
-  const SquareButton({super.key, required this.icon});
+  const SquareButton({super.key, required this.iconPath});
 
-  final IconData icon;
+  final String iconPath;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -23,7 +23,7 @@ class SquareButton extends StatelessWidget {
           backgroundColor: Colors.white,
           overlayColor: Color.fromARGB(255, 242, 242, 242),
         ),
-        child: Icon(icon, color: Colors.black, size: 24),
+        child: SvgPicture.asset(iconPath),
       ),
     );
   }
