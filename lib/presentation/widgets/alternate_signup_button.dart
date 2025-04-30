@@ -16,7 +16,6 @@ class AlternateSignupButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          overlayColor: Colors.transparent,
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
 
@@ -39,8 +38,9 @@ class AlternateSignupButton extends StatelessWidget {
 
             SvgPicture.asset(
                         iconPath,
-                        height: 24,
-                        width: 24,),
+                        // height: 24,
+                        // width: 24,
+                        ),
             // SvgPicture.asset(
             //   iconPath,
             //   height: 24,
@@ -51,7 +51,7 @@ class AlternateSignupButton extends StatelessWidget {
             //     color: Colors.red,
             //   ),
             // ),
-            SizedBox(width: 12),
+            SizedBox(width: 0),
             Text(text),
           ],
         ),

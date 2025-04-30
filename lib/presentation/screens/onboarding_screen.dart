@@ -46,7 +46,7 @@ class _OnboardingScreenState
                     onPressed: () {
                       Navigator.pushReplacementNamed(
                         context,
-                        //'/signInScreen',
+                        // '/signInScreen',
                         '/signUpScreen',
                       );
                     },
