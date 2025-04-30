@@ -8,12 +8,14 @@ class FineaceApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Fineace',
-      
+
       initialRoute: '/splashScreen',
       routes: {
         '/splashScreen': (context) => const SplashScreen(),
-        '/onboardingScreen': (context) => const OnboardingScreen(),
+        '/onboardingScreen':
+            (context) => const OnboardingScreen(),
         '/signInScreen': (context) => const SignInScreen(),
+        '/signUpScreen': (context) => const SignUpScreen(),
       },
     );
   }

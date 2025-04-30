@@ -48,6 +48,12 @@ class _OnboardingScreenState
                       '/signInScreen',
                     );
                   },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    padding: const EdgeInsets.all(0),
+                    overlayColor: Colors.transparent,
+                  ),
                   child: Row(
                     children: [
                       Text(
@@ -59,7 +65,7 @@ class _OnboardingScreenState
                             255,
                             255,
                             69,
-                            13
+                            13,
                           ),
                           fontWeight: FontWeight.w700,
                         ),
@@ -70,7 +76,7 @@ class _OnboardingScreenState
                         width: 16,
 
                         colorFilter: const ColorFilter.mode(
-                          Color.fromARGB(255, 255, 69, 13),
+                          ColorPallete.textColor,
                           BlendMode.srcIn,
                         ),
                       ),
