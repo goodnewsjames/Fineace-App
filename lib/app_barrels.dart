@@ -18,3 +18,5 @@ export 'package:fineace/presentation/widgets/pinput_widget.dart';
 export 'package:fineace/presentation/widgets/square_button.dart';
 export 'package:fineace/presentation/screens/sign_up_screen.dart';
 export 'package:flutter/gestures.dart';
+export 'package:fineace/presentation/constants/asset_constant.dart';
+export 'package:fineace/presentation/constants/form_validation_constant.dart';

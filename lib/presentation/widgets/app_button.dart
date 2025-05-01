@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton({super.key, required this.text});
+  const AppButton({
+    super.key,
+    required this.text,
+    this.onPressed,
+    this.isEnabled = true,
+
+  });
   final String text;
+  final bool isEnabled;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -10,10 +18,9 @@ class AppButton extends StatelessWidget {
       height: 48,
       width: 335,
       child: ElevatedButton(
-
-        onPressed: () {},
+        onPressed: isEnabled ? onPressed : null,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Color.fromARGB(255, 255, 69, 13,),
+          backgroundColor: Color.fromARGB(255, 255, 69, 13),
           foregroundColor: Colors.white,
 
           padding: const EdgeInsets.symmetric(

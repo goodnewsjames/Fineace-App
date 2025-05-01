@@ -1,5 +1,4 @@
 import 'package:fineace/app_barrels.dart';
-import 'package:fineace/presentation/constants/asset_constant.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -9,6 +8,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,94 +58,110 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextInputField(
                 hintText: 'Username',
                 prefixIconPath: 'assets/icons/user.svg',
+                validator:
+                    FormValidationConstant.validateUserName,
               ),
               SizedBox(height: 30),
               TextInputField(
+                validator:
+                    FormValidationConstant.validateEmail,
                 hintText: 'Email',
                 prefixIconPath: 'assets/icons/message.svg',
               ),
               SizedBox(height: 24),
               TextInputField(
+                validator:
+                    FormValidationConstant.validatePassword,
                 hintText: 'Password',
                 prefixIconPath: 'assets/icons/security.svg',
+                controller: passwordController,
               ),
               SizedBox(height: 24),
 
               TextInputField(
+                controller: confirmPasswordController,
                 hintText: 'Confirm Password',
                 prefixIconPath: 'assets/icons/security.svg',
+                validator: (value) {
+                  return FormValidationConstant.validateConfirmPassword(
+                    password: passwordController.text,
+                    confirmPassword:
+                        confirmPasswordController.text,
+                  );
+                },
               ),
               const SizedBox(height: 24),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment:
+                    CrossAxisAlignment.center,
                 children: [
                   AppCheckbox(),
                   SizedBox(width: 1),
-                  Expanded(
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'I agree to the',
-                        style: TextStyle(
-                          fontFamily: 'LexendDeca',
-                          fontSize: 12,
-                          fontWeight: FontWeight.w300,
-                          color: Color.fromARGB(
-                            255,
-                            102,
-                            102,
-                            102,
+                  RichText(
+                    text: TextSpan(
+                      text: 'I agree to the',
+                      style: TextStyle(
+                        fontFamily: 'LexendDeca',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w300,
+                        color: Color.fromARGB(
+                          255,
+                          102,
+                          102,
+                          102,
+                        ),
+                      ),
+                      children: [
+                        TextSpan(
+                          text: ' Terms',
+                          style: TextStyle(
+                            fontFamily: 'LexendDeca',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                            color: Color.fromARGB(
+                              255,
+                              255,
+                              71,
+                              13,
+                            ),
                           ),
                         ),
-                        children: [
-                          TextSpan(
-                            text: ' Terms',
-                            style: TextStyle(
-                              fontFamily: 'LexendDeca',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                              color: Color.fromARGB(
-                                255,
-                                255,
-                                71,
-                                13,
-                              ),
+                        TextSpan(
+                          text: ' and ',
+                          style: TextStyle(
+                            fontFamily: 'LexendDeca',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                            color: Color.fromARGB(
+                              255,
+                              102,
+                              102,
+                              102,
                             ),
                           ),
-                          TextSpan(
-                            text: ' and ',
-                            style: TextStyle(
-                              fontFamily: 'LexendDeca',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                              color: Color.fromARGB(
-                                255,
-                                102,
-                                102,
-                                102,
-                              ),
+                        ),
+                        TextSpan(
+                          text: 'Conditions',
+                          style: TextStyle(
+                            fontFamily: 'LexendDeca',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                            color: Color.fromARGB(
+                              255,
+                              255,
+                              71,
+                              13,
                             ),
                           ),
-                          TextSpan(
-                            text: 'Conditions',
-                            style: TextStyle(
-                              fontFamily: 'LexendDeca',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                              color: Color.fromARGB(
-                                255,
-                                255,
-                                71,
-                                13,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
               SizedBox(height: 36),
-              AppButton(text: 'Sign Up'),
+              AppButton(text: 'Sign Up', onPressed: () {}),
               SizedBox(height: 8),
               RichText(
                 text: TextSpan(
@@ -162,13 +179,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   children: [
                     TextSpan(
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.pushReplacementNamed(
-                            context,
-                            '/signInScreen',
-                          );
-                        },
+                      recognizer:
+                          TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                '/signInScreen',
+                              );
+                            },
                       text: 'Sign In',
                       style: TextStyle(
                         fontFamily: 'LexendDeca',
