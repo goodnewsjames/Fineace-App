@@ -20,3 +20,7 @@ export 'package:fineace/presentation/screens/sign_up_screen.dart';
 export 'package:flutter/gestures.dart';
 export 'package:fineace/presentation/constants/asset_constant.dart';
 export 'package:fineace/presentation/constants/form_validation_constant.dart';
+export 'package:firebase_core/firebase_core.dart';
+export 'package:fineace/firebase_options.dart';
+export 'package:firebase_auth/firebase_auth.dart';
+export 'package:fineace/data/firebase_datasource.dart';

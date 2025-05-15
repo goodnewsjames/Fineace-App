@@ -6,8 +6,9 @@ class AppButton extends StatelessWidget {
     required this.text,
     this.onPressed,
     this.isEnabled = true,
-
+    this.isLoading = false,
   });
+  final bool isLoading;
   final String text;
   final bool isEnabled;
   final void Function()? onPressed;
@@ -18,7 +19,7 @@ class AppButton extends StatelessWidget {
       height: 48,
       width: 335,
       child: ElevatedButton(
-        onPressed: isEnabled ? onPressed : null,
+        onPressed: isEnabled && !isLoading ? onPressed : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: Color.fromARGB(255, 255, 69, 13),
           foregroundColor: Colors.white,
@@ -36,7 +37,7 @@ class AppButton extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
-        child: Text(text),
+        child: isLoading ? CircularProgressIndicator() : Text(text),
       ),
     );
   }

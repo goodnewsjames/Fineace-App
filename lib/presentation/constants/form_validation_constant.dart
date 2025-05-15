@@ -7,12 +7,12 @@ class FormValidationConstant {
     return null;
   }
 
-   static String? validateLoginPassword(String? value) {
+  static String? validateLoginPassword(String? value) {
     if (value == null) return 'Cannot be empty';
-    
+
     if (value.length >= 6) {
       return null;
-    } 
+    }
     return 'Password must be at least 6 characters long';
   }
 

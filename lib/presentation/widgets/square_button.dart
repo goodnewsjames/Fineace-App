@@ -1,20 +1,21 @@
 import 'package:fineace/app_barrels.dart';
 
 class SquareButton extends StatelessWidget {
-   SquareButton({
+  const SquareButton({
     super.key,
     required this.iconPath,
-     this.onpress,
+    required this.onpress,
   });
 
   final String iconPath;
-   VoidCallback? onpress = () {};
+  final VoidCallback? onpress;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 48,
       width: 48,
-      child: ElevatedButton(
+      child: IconButton(
+        icon: SvgPicture.asset(iconPath),
         onPressed: onpress,
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
@@ -25,10 +26,7 @@ class SquareButton extends StatelessWidget {
             width: 1,
           ),
           padding: const EdgeInsets.all(0),
-          backgroundColor: Colors.white,
-          overlayColor: Color.fromARGB(255, 242, 242, 242),
         ),
-        child: SvgPicture.asset(iconPath),
       ),
     );
   }

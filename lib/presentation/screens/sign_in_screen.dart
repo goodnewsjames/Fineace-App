@@ -1,5 +1,4 @@
 import 'package:fineace/app_barrels.dart';
-import 'package:fineace/presentation/constants/asset_constant.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -12,6 +11,11 @@ class _SignInScreenState extends State<SignInScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool isButtonEnabled = false;
+  bool isLoading = false;
+  bool isGoogleButtonLoading = false;
+  final dataSource = FirebaseDatasource(
+    firebaseAuth: FirebaseAuth.instance,
+  );
   void checkFormValid() {
     final isEmailValid =
         FormValidationConstant.validateEmail(
@@ -58,6 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     },
                   ),
                   SquareButton(
+                    onpress: () {},
                     iconPath: AssetConstant.infoIconPath,
                   ),
                 ],
@@ -148,17 +153,48 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               SizedBox(height: 12),
               AppButton(
-                onPressed: () {},
+                isLoading: isLoading,
+                onPressed: () async {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  final result = await dataSource.signIn(
+                    email: emailController.text.trim(),
+                    password:
+                        passwordController.text.trim(),
+                  );
+                  if (result?.user != null) {
+                    print(result?.user?.email);
+                    setState(() {
+                      isLoading = false;
+                    });
+                  }
+                },
                 text: 'Sign In',
                 isEnabled: isButtonEnabled,
               ),
               SizedBox(height: 120),
               AlternateSignupButton(
+                isLoading: isGoogleButtonLoading,
+                onclick: () async {
+                  setState(() {
+                    isGoogleButtonLoading = true;
+                  });
+                  final result =
+                      await dataSource.signInWithGoogle();
+                  if (result.user != null) {
+                    print(result.user?.email);
+                  }
+                  setState(() {
+                    isGoogleButtonLoading = false;
+                  });
+                },
                 text: 'Sign In with Google',
                 iconPath: AssetConstant.googleIconPath,
               ),
               SizedBox(height: 16),
               AlternateSignupButton(
+                onclick: () {},
                 text: 'Sign In with Apple',
                 iconPath: AssetConstant.appleIconPath,
               ),

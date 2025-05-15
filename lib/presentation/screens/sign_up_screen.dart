@@ -8,8 +8,44 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final datasource = FirebaseDatasource(
+    firebaseAuth: FirebaseAuth.instance,
+  );
+  bool isLoading = false;
+  bool isButtonEnabled = false;
+
+  void checkFormValid() {
+    final isEmailValid =
+        FormValidationConstant.validateEmail(
+          emailController.text,
+        );
+    final isPasswordValid =
+        FormValidationConstant.validateLoginPassword(
+          passwordController.text,
+        );
+    final isConfirmPasswordValid =
+        FormValidationConstant.validateConfirmPassword(
+          confirmPassword: confirmPasswordController.text,
+          password: passwordController.text,
+        );
+    if (isEmailValid == null &&
+        isPasswordValid == null &&
+        isConfirmPasswordValid == null) {
+      // Proceed with login
+      setState(() {
+        isButtonEnabled = true;
+      });
+    } else {
+      // Show error messages
+      setState(() {
+        isButtonEnabled = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,10 +63,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     MainAxisAlignment.spaceBetween,
                 children: [
                   SquareButton(
+                    onpress: () {},
                     iconPath:
                         AssetConstant.arrowLeftIconPath,
                   ),
                   SquareButton(
+                    onpress: () {},
                     iconPath: AssetConstant.infoIconPath,
                   ),
                 ],
@@ -56,6 +94,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               SizedBox(height: 24),
               TextInputField(
+                onChanged: (value) {
+                  checkFormValid();
+                },
                 hintText: 'Username',
                 prefixIconPath: 'assets/icons/user.svg',
                 validator:
@@ -63,6 +104,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               SizedBox(height: 30),
               TextInputField(
+                onChanged: (value) {
+                  checkFormValid();
+                },
+                controller: emailController,
                 validator:
                     FormValidationConstant.validateEmail,
                 hintText: 'Email',
@@ -79,6 +124,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(height: 24),
 
               TextInputField(
+                onChanged: (value) {
+                  checkFormValid();
+                },
                 controller: confirmPasswordController,
                 hintText: 'Confirm Password',
                 prefixIconPath: 'assets/icons/security.svg',
@@ -161,7 +209,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ],
               ),
               SizedBox(height: 36),
-              AppButton(text: 'Sign Up', onPressed: () {}),
+              AppButton(
+                isEnabled: isButtonEnabled,
+                isLoading: isLoading,
+                text: 'Sign Up',
+                onPressed: () async {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  final result = await datasource.signUp(
+                    email: emailController.text.trim(),
+                    password:
+                        passwordController.text.trim(),
+                  );
+                  if (result) {
+                    setState(() {
+                      isLoading = false;
+                    });
+                  }
+                },
+              ),
               SizedBox(height: 8),
               RichText(
                 text: TextSpan(
@@ -182,7 +249,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       recognizer:
                           TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.pushReplacementNamed(
+                              Navigator.pushNamed(
                                 context,
                                 '/signInScreen',
                               );
@@ -206,11 +273,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(height: 40),
 
               AlternateSignupButton(
+                onclick: () {
+                  
+                },
                 text: 'Sign up with Google',
                 iconPath: AssetConstant.googleIconPath,
               ),
               SizedBox(height: 16),
               AlternateSignupButton(
+                onclick: () {
+                  
+                },
                 text: 'Sign up with Apple',
                 iconPath: AssetConstant.appleIconPath,
               ),

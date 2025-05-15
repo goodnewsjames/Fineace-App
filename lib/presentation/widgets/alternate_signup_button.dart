@@ -4,17 +4,21 @@ class AlternateSignupButton extends StatelessWidget {
   const AlternateSignupButton({
     required this.text,
     required this.iconPath,
+    required this.onclick,
+    this.isLoading = false,
     super.key,
   });
   final String text;
   final String iconPath;
+  final VoidCallback onclick;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 48,
       width: 335,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onclick,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
@@ -32,29 +36,18 @@ class AlternateSignupButton extends StatelessWidget {
             fontWeight: FontWeight.w300,
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            SvgPicture.asset(
-                        iconPath,
-                        // height: 24,
-                        // width: 24,
-                        ),
-            // SvgPicture.asset(
-            //   iconPath,
-            //   height: 24,
-            //   width: 24,
-            //   errorBuilder: (context, error, stackTrace) => 
-            //       const Icon(
-            //     Icons.error,
-            //     color: Colors.red,
-            //   ),
-            // ),
-            SizedBox(width: 0),
-            Text(text),
-          ],
-        ),
+        child:
+            isLoading
+                ? CircularProgressIndicator()
+                : Row(
+                  mainAxisAlignment:
+                      MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(iconPath),
+                    SizedBox(width: 0),
+                    Text(text),
+                  ],
+                ),
       ),
     );
   }

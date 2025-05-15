@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "650580724445",
+    "project_id": "fineace-app-eae93",
+    "storage_bucket": "fineace-app-eae93.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650580724445:android:1a1ea498924d55c1bca934",
+        "android_client_info": {
+          "package_name": "com.example.fineace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "650580724445-kfml0385ladk0shlt8h655ajjmseup0c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fineace",
+            "certificate_hash": "ac75b41808f2f60d3df71f7ca9413dba604e6df3"
+          }
+        },
+        {
+          "client_id": "650580724445-f8i5naq0iiuug88be4buoivpiagjgmak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqdjmEZy42npg4YLvkrGhHDXyyhUmt40M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "650580724445-f8i5naq0iiuug88be4buoivpiagjgmak.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "650580724445-5bospn9jloelnpnud77dqmeg8bf0pim1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fineace"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
